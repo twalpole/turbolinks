@@ -33,7 +33,7 @@ enableTransitionCache = (enable = true) ->
 
 fetchReplacement = (url, onLoadFunction = =>) ->  
   triggerEvent 'page:fetch', url: url.absolute
-
+  console.log "triggered page:fetch for #{url.absolute}"
   xhr?.abort()
   xhr = new XMLHttpRequest
   xhr.open 'GET', url.withoutHashForIE10compatibility(), true
@@ -117,6 +117,7 @@ removeNoscriptTags = (node) ->
 
 reflectNewUrl = (url) ->
   if (url = new ComponentUrl url).absolute isnt referer
+    console.log("pushing new url: #{url.absolute"})
     window.history.pushState { turbolinks: true, url: url.absolute }, '', url.absolute
 
 reflectRedirectedUrl = ->
