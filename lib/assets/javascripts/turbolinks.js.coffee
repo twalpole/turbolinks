@@ -117,7 +117,7 @@ removeNoscriptTags = (node) ->
 
 reflectNewUrl = (url) ->
   if (url = new ComponentUrl url).absolute isnt referer
-    console.log("pushing new url: #{url.absolute"})
+    console.log("pushing new url: #{url.absolute}")
     window.history.pushState { turbolinks: true, url: url.absolute }, '', url.absolute
 
 reflectRedirectedUrl = ->
@@ -321,6 +321,7 @@ class Click
     return if @event.defaultPrevented
     @_extractLink()
     if @_validForTurbolinks()
+      debugger
       visit @link.href unless pageChangePrevented()
       @event.preventDefault() 
 
